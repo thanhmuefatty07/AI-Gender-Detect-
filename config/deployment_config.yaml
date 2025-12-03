@@ -48,3 +48,4 @@ security:
   input_validation:
     max_file_size: 10485760  # 10MB
     allowed_extensions: [".jpg", ".jpeg", ".png", ".mp4", ".wav"]
+

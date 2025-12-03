@@ -128,3 +128,4 @@ EXPOSE 8501
 
 # Default command
 CMD ["streamlit", "run", "app/monitoring_dashboard.py", "--server.port=8501", "--server.address=0.0.0.0"]
+

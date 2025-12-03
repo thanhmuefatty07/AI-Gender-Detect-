@@ -82,3 +82,4 @@ pytest-cov>=4.1.0
 # ===== OPTIONAL: GPU SUPPORT =====
 # torch==2.1.0+cu121 --index-url https://download.pytorch.org/whl/cu121  # For CUDA 12.1
 # tensorflow==2.15.0  # Alternative to PyTorch
+

@@ -467,3 +467,4 @@ def collect_from_user_sample():
 
 if __name__ == "__main__":
     collect_instagram_sample()
+

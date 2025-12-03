@@ -312,3 +312,4 @@ class BaseCollector(ABC):
         """Cleanup resources"""
         logger.info(f"🧹 Cleaning up {self.__class__.__name__}")
         # Override in subclasses if needed
+
