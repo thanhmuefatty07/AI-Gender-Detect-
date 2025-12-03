@@ -1,0 +1,50 @@
+# ============================================
+# Deployment Configuration
+# ============================================
+
+# API Settings
+api:
+  host: "0.0.0.0"
+  port: 8000
+  workers: 4
+  timeout: 30
+  cors:
+    enabled: true
+    origins: ["*"]
+
+# Model Serving
+serving:
+  model_format: "onnx"  # onnx, torchscript, tensorflow
+  model_path: "./models/vision/exports/model.onnx"
+  batch_size: 32
+  cache:
+    enabled: true
+    max_size: 100
+    ttl: 3600  # seconds
+
+# Performance
+performance:
+  use_gpu: true
+  precision: "fp16"  # fp32, fp16, int8
+  optimization:
+    quantization: false
+    pruning: false
+
+# Monitoring
+monitoring:
+  metrics_enabled: true
+  logging_enabled: true
+  health_check: "/health"
+  metrics_endpoint: "/metrics"
+
+# Security
+security:
+  rate_limit:
+    enabled: true
+    requests_per_minute: 60
+  authentication:
+    enabled: false
+    type: "api_key"  # api_key, jwt, oauth
+  input_validation:
+    max_file_size: 10485760  # 10MB
+    allowed_extensions: [".jpg", ".jpeg", ".png", ".mp4", ".wav"]

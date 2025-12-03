@@ -1,0 +1,41 @@
+gender_age_classifier
+├── config
+│   ├── collector_config.yaml
+│   └── env.template
+├── data_collection
+│   ├── __init__.py
+│   ├── base_collector.py
+│   ├── instagram_collector.py
+│   ├── tiktok_collector.py
+│   └── video_processor.py
+├── app
+│   └── monitoring_dashboard.py
+├── scripts
+│   ├── academic_datasets_merger.py
+│   ├── run_monitoring.py
+│   └── test_system.py
+├── datasets
+│   ├── collected
+│   │   ├── instagram
+│   │   │   ├── processed
+│   │   │   └── raw_videos
+│   │   ├── tiktok
+│   │   │   ├── processed
+│   │   │   └── raw_videos
+│   │   └── youtube
+│   │       ├── processed
+│   │       └── raw_videos
+│   └── academic
+├── logs
+├── notebooks
+├── models
+├── utils
+├── tests
+├── docs
+├── requirements_collector.txt
+├── .env.template
+├── .gitignore
+├── FOLDER_STRUCTURE.txt
+├── PROJECT_STRUCTURE.md
+├── README.md
+└── TREE_STRUCTURE.txt

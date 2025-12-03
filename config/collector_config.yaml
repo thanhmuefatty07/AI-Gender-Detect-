@@ -1,0 +1,81 @@
+# ============================================
+# Data Collection Configuration
+# ============================================
+
+# YouTube Settings
+youtube:
+  api_key: ${YOUTUBE_API_KEY}
+  max_videos_per_query: 50
+  download:
+    format: "bestvideo[height<=720]+bestaudio/best"
+    output_template: "%(id)s.%(ext)s"
+    rate_limit: "1M"  # 1MB/s
+  filters:
+    min_duration: 30  # seconds
+    max_duration: 600  # 10 minutes
+    min_views: 1000
+    languages: ["en", "vi"]
+
+# TikTok Settings
+tiktok:
+  download:
+    format: "best"
+    output_template: "%(id)s.%(ext)s"
+  filters:
+    min_likes: 100
+    min_duration: 15
+    max_duration: 180
+
+# Instagram Settings
+instagram:
+  download:
+    format: "best"
+    output_template: "%(id)s.%(ext)s"
+  filters:
+    min_likes: 50
+
+# Processing Settings
+processing:
+  face_detection:
+    model: "retinaface"
+    confidence_threshold: 0.9
+    min_face_size: 100
+    max_faces: 5
+
+  video:
+    target_fps: 1  # Extract 1 frame per second
+    target_resolution: [224, 224]
+
+  audio:
+    sample_rate: 16000
+    duration: 3  # seconds
+    format: "wav"
+
+# Storage Settings
+storage:
+  backend: "local"  # local, s3, gcs
+  local:
+    base_path: "./datasets/collected"
+  s3:
+    bucket: "gender-age-data"
+    region: "us-east-1"
+  gcs:
+    bucket: "gender-age-data"
+    project: "your-project-id"
+
+# Labeling Settings
+labeling:
+  auto_label: true
+  models:
+    gender: "./models/pretrained/gender_classifier.onnx"
+    age: "./models/pretrained/age_estimator.onnx"
+  thresholds:
+    gender_confidence: 0.8
+    age_confidence: 0.7
+
+# Monitoring
+monitoring:
+  enabled: true
+  log_level: "INFO"
+  metrics_port: 9090
+  dashboard_port: 8501
