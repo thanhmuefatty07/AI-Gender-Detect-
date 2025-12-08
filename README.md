@@ -1,98 +1,67 @@
-# 🎯 Gender & Age Classification System
+# 🎯 AI-Gender-Fusion (Minimal Colab Project)
 
-Multi-modal deep learning system for real-time gender and age prediction from images, videos, and audio.
+**Mục tiêu:** Huấn luyện fusion model (vision + audio) trực tiếp trên **Google Colab**.  
+**Triết lý:** Notebook-first, tối giản file/folder. Không Docker, không API, không CI/CD.
 
-## 📋 Features
+---
 
-- 🖼️ **Vision-based Classification**: Face detection + CNN classification
-- 🎵 **Audio-based Classification**: Voice analysis using MFCC + LSTM
-- 🔀 **Multi-modal Fusion**: Combined vision + audio for better accuracy
-- 📊 **Data Collection Pipeline**: Automated data gathering from YouTube, TikTok, Instagram
-- 🚀 **Production Ready**: FastAPI + ONNX + Docker deployment
-- 📈 **Monitoring**: Real-time metrics and dashboards
-
-## 🏗️ Architecture
-
+## 📂 Cấu trúc tối giản
 ```
-Input (Image/Video/Audio)
-    ↓
-Face Detection / Audio Extraction
-    ↓
-Feature Extraction (Vision + Audio Models)
-    ↓
-Fusion Layer
-    ↓
-Predictions (Gender + Age)
+AI-Gender-Fusion/
+├── notebooks/
+│   └── Gender_Fusion_Training.ipynb   # Notebook chính (Colab)
+├── requirements.txt                   # Thư viện tối thiểu
+└── README.md                          # Hướng dẫn
 ```
 
-## 🚀 Quick Start
+> Lưu ý: Toàn bộ logic (tải data → xử lý → train → eval) đặt trong **Gender_Fusion_Training.ipynb**.
 
-### Installation
+---
 
+## 🛠️ Cài đặt (trên Colab)
 ```bash
-# Clone repository
-git clone https://github.com/yourusername/gender-age-classifier.git
-cd gender-age-classifier
-
-# Create virtual environment
-python -m venv venv
-source venv/bin/activate  # Linux/Mac
-# venv\Scripts\activate  # Windows
-
-# Install dependencies
-pip install -r requirements.txt
+# Trong Colab cell đầu tiên
+!pip install -r requirements.txt
 ```
 
-### Training
-
-```bash
-# Train vision model
-python training/vision/train.py --config config/training_config.yaml
-
-# Train audio model
-python training/audio/train.py --config config/training_config.yaml
-
-# Train fusion model
-python training/fusion/train.py --config config/training_config.yaml
+**requirements.txt (đã rút gọn):**
+```
+numpy<2.0
+mediapipe
+speechbrain
+torchaudio
+torchmetrics
+ffmpeg-python
+yt-dlp
 ```
 
-### Inference
+---
 
-```bash
-# Start API server
-python inference/api/main.py
+## 🚀 Quy trình làm việc (Notebook-first)
+1) Mở `notebooks/Gender_Fusion_Training.ipynb` trên Google Colab.  
+2) Chạy cell cài đặt dependencies.  
+3) Thực hiện pipeline trong notebook:
+   - Tải dữ liệu (YouTube/Wikimedia, tùy bạn)  
+   - Tiền xử lý (ảnh + audio)  
+   - Huấn luyện fusion model (vision + audio)  
+   - Đánh giá & lưu checkpoint (tùy chọn: drive/weights)  
+4) Xuất kết quả/metric trực tiếp từ notebook.
 
-# Test inference
-curl -X POST "http://localhost:8000/predict" \
-  -F "file=@test_image.jpg"
-```
+---
 
-## 📊 Performance
+## ❓ FAQ
+- **Tại sao không Docker/API/CI/CD?**  
+  Dự án sinh viên, chạy trên Colab → ưu tiên đơn giản, dễ debug.
 
-| Model | Gender Acc | Age MAE | Inference Time |
-|-------|------------|---------|----------------|
-| Vision Only | 94.0% | 5.1 years | 12ms |
-| Audio Only | 89.5% | 7.2 years | 18ms |
-| Multi-modal | 95.8% | 4.3 years | 25ms |
+- **Tôi nên đặt code ở đâu?**  
+  Gọn trong notebook chính; nếu cần thêm file `.py`, để cùng thư mục với notebook.
 
-## 📚 Documentation
+- **Lưu model ở đâu?**  
+  Gợi ý: Google Drive hoặc tải xuống trực tiếp từ notebook.
 
-- [Architecture Guide](docs/architecture/README.md)
-- [API Documentation](docs/api/README.md)
-- [Training Guide](docs/guides/training.md)
-- [Deployment Guide](docs/guides/deployment.md)
+---
 
-## 🤝 Contributing
-
-Contributions welcome! Please read [CONTRIBUTING.md](CONTRIBUTING.md) first.
-
-## 📄 License
-
-MIT License - see [LICENSE](LICENSE) file for details.
-
-## 🙏 Acknowledgments
-
-- UTKFace dataset
-- FairFace dataset
-- EfficientNet architecture
-- FastAPI framework
+## 📌 Ghi chú
+- Repo đã được dọn sạch khỏi các thành phần MLOps cũ (Docker, API, monitoring, collectors...).  
+- Nếu cần bổ sung, hãy thêm trực tiếp vào notebook hoặc một file `.py` duy nhất.  
+- Hãy commit notebook sau khi hoàn thiện thí nghiệm để lưu lại kết quả.
