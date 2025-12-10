@@ -1,53 +1,54 @@
 import os
 import subprocess
 
-# --- C?U HÌNH BOT ---
-# Thu m?c luu d? li?u (d?t vào thu m?c Google Drive n?u mu?n auto-sync)
-SAVE_DIR = "Gender_Raw_Data"
+# --- Cáº¤U HÃŒNH BOT ---
+# ThÆ° má»¥c lÆ°u dá»¯ liá»‡u (máº·c Ä‘á»‹nh trá» vÃ o Google Drive for Desktop trÃªn Windows).
+# Náº¿u báº¡n dÃ¹ng Ä‘Æ°á»ng dáº«n khÃ¡c, sá»­a biáº¿n nÃ y cho Ä‘Ãºng.
+SAVE_DIR = r"G:\My Drive\Gender_Raw_Data"
 
-# S? lu?ng video mu?n t?i cho m?i t? khóa
+# S? lu?ng video mu?n t?i cho m?i t? khï¿½a
 LIMIT_PER_KEYWORD = 5
 
-# Danh sách t? khóa (Bot s? t? tìm và t?i)
+# Danh sï¿½ch t? khï¿½a (Bot s? t? tï¿½m vï¿½ t?i)
 SEARCH_KEYWORDS = {
     "Male": [
-        "Ph?ng v?n Tr?n Thành",
+        "Ph?ng v?n Tr?n Thï¿½nh",
         "Talkshow Vietcetera Nam",
-        "Ph?ng v?n Son Tùng MTP",
+        "Ph?ng v?n Son Tï¿½ng MTP",
         "Vlog Khoai Lang Thang",
-        "Ph?ng v?n Ðen Vâu",
+        "Ph?ng v?n ï¿½en Vï¿½u",
         "Talkshow MC Quy?n Linh",
     ],
     "Female": [
-        "Ph?ng v?n M? Tâm",
-        "Talkshow Thùy Minh",
+        "Ph?ng v?n M? Tï¿½m",
+        "Talkshow Thï¿½y Minh",
         "Ph?ng v?n Suboi",
-        "Vlog Khánh Vy",
+        "Vlog Khï¿½nh Vy",
         "Talkshow Hari Won",
-        "Ph?ng v?n Hoa H?u Thùy Tiên",
+        "Ph?ng v?n Hoa H?u Thï¿½y Tiï¿½n",
     ],
 }
 
 
 def crawl_youtube(keyword: str, output_folder: str, limit: int):
-    """Dùng yt-dlp d? tìm ki?m và t?i t? d?ng theo t? khóa"""
+    """Dï¿½ng yt-dlp d? tï¿½m ki?m vï¿½ t?i t? d?ng theo t? khï¿½a"""
     os.makedirs(output_folder, exist_ok=True)
 
-    print(f" Ðang tìm ki?m và t?i: '{keyword}' (Max: {limit})...")
+    print(f" ï¿½ang tï¿½m ki?m vï¿½ t?i: '{keyword}' (Max: {limit})...")
 
-    # Cú pháp tìm ki?m: ytsearchN:keyword
+    # Cï¿½ phï¿½p tï¿½m ki?m: ytsearchN:keyword
     query = f"ytsearch{limit}:{keyword}"
 
     cmd = [
         "yt-dlp",
-        query,  # L?nh tìm ki?m
+        query,  # L?nh tï¿½m ki?m
         "-f",
         "bestvideo[ext=mp4]+bestaudio[ext=m4a]/mp4",  # Ch?t lu?ng t?t nh?t
         "-o",
-        f"{output_folder}/%(title)s.%(ext)s",  # Tên file theo tiêu d?
-        "--no-playlist",  # Không t?i playlist
+        f"{output_folder}/%(title)s.%(ext)s",  # Tï¿½n file theo tiï¿½u d?
+        "--no-playlist",  # Khï¿½ng t?i playlist
         "--match-filter",
-        "duration > 60 & duration < 1200",  # Ch? l?y video 1-20 phút
+        "duration > 60 & duration < 1200",  # Ch? l?y video 1-20 phï¿½t
         "--ignore-errors",  # G?p l?i b? qua, ti?p t?c
     ]
 
@@ -58,17 +59,17 @@ def crawl_youtube(keyword: str, output_folder: str, limit: int):
 
 
 def main():
-    print(" BOT B?T Ð?U HO?T Ð?NG...")
+    print(" BOT B?T ï¿½?U HO?T ï¿½?NG...")
 
     for gender, keywords in SEARCH_KEYWORDS.items():
-        print(f"\n ÐANG X? LÝ NHÓM: {gender.upper()}")
+        print(f"\n ï¿½ANG X? Lï¿½ NHï¿½M: {gender.upper()}")
         save_path = os.path.join(SAVE_DIR, gender)
 
         for kw in keywords:
             crawl_youtube(kw, save_path, LIMIT_PER_KEYWORD)
 
-    print(f"\n HOÀN T?T! Ki?m tra thu m?c '{SAVE_DIR}'.")
-    print(" Ð?t SAVE_DIR trong thu m?c Google Drive d? auto-sync lên cloud.")
+    print(f"\n HOï¿½N T?T! Ki?m tra thu m?c '{SAVE_DIR}'.")
+    print(" ï¿½?t SAVE_DIR trong thu m?c Google Drive d? auto-sync lï¿½n cloud.")
 
 
 if __name__ == "__main__":
