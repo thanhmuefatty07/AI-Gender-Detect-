@@ -26,7 +26,6 @@ wheels/
 # ============================================
 # Virtual Environments
 # ============================================
-
 venv/
 env/
 ENV/
@@ -35,7 +34,6 @@ ENV/
 # ============================================
 # IDE
 # ============================================
-
 .vscode/
 .idea/
 *.swp
@@ -45,7 +43,6 @@ ENV/
 # ============================================
 # Data
 # ============================================
-
 datasets/collected/
 datasets/prepared/
 datasets/augmented/
@@ -58,7 +55,6 @@ datasets/augmented/
 # ============================================
 # Models
 # ============================================
-
 models/*/checkpoints/
 models/*/exports/*.onnx
 models/pretrained/*.pth
@@ -70,7 +66,6 @@ models/pretrained/*.pth
 # ============================================
 # Logs
 # ============================================
-
 logs/
 *.log
 tensorboard_logs/
@@ -79,7 +74,6 @@ wandb/
 # ============================================
 # Cache
 # ============================================
-
 cache/
 .cache/
 *.cache
@@ -87,7 +81,6 @@ cache/
 # ============================================
 # Environment
 # ============================================
-
 .env
 .env.local
 .env.*.local
@@ -95,7 +88,6 @@ cache/
 # ============================================
 # OS
 # ============================================
-
 .DS_Store
 Thumbs.db
 desktop.ini
@@ -103,7 +95,6 @@ desktop.ini
 # ============================================
 # Testing
 # ============================================
-
 .coverage
 .pytest_cache/
 htmlcov/
@@ -112,22 +103,19 @@ htmlcov/
 # ============================================
 # Jupyter
 # ============================================
-
 .ipynb_checkpoints/
 *.ipynb_checkpoints
 
 # ============================================
 # Results
 # ============================================
-
 results/experiments/
 results/benchmarks/
 
-
-# ═══════════════════════════════════════════════════════════
+# 
 # Trading System Data Files (Added: 2024-12-10)
 # Reason: Large files, regenerable, prevent repo bloat
-# ═══════════════════════════════════════════════════════════
+# 
 
 # Demo/Test Data (Sample market data for testing)
 data/demo/*.csv.gz
@@ -168,10 +156,3 @@ models/checkpoints/*.safetensors
 
 # Archive Strategy
 # NOTE: archive/ is NOT ignored - it stays tracked for audit trail
-
-
-
-
-
-
-

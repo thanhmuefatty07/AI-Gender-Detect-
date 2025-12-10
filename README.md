@@ -1,30 +1,35 @@
-# 🎯 AI-Gender-Fusion (Minimal Colab Project)
+#  AI-Gender-Fusion (Minimal Colab Project)
 
-**Mục tiêu:** Huấn luyện fusion model (vision + audio) trực tiếp trên **Google Colab**.  
-**Triết lý:** Notebook-first, tối giản file/folder. Không Docker, không API, không CI/CD.
+**M?c ti�u:** Hu?n luy?n fusion model (vision + audio) tr?c ti?p tr�n **Google Colab**.
+**Tri?t l�:** Notebook-first, t?i gi?n file/folder. Kh�ng Docker, kh�ng API, kh�ng CI/CD.
 
 ---
 
-## 📂 Cấu trúc tối giản
+##  C?u tr�c t?i gi?n
 ```
 AI-Gender-Fusion/
-├── notebooks/
-│   └── Gender_Fusion_Training.ipynb   # Notebook chính (Colab)
-├── requirements.txt                   # Thư viện tối thiểu
-└── README.md                          # Hướng dẫn
+ notebooks/
+    Gender_Fusion_Training.ipynb   # Notebook ch�nh (Colab)
+ requirements.txt                   # Thu vi?n t?i thi?u
+ auto_bot.py                        # Bot t?i d? li?u Youtube (ch?y local)
+ README.md                          # Hu?ng d?n
 ```
-
-> Lưu ý: Toàn bộ logic (tải data → xử lý → train → eval) đặt trong **Gender_Fusion_Training.ipynb**.
+> To�n b? logic train/pipeline n�n d?t trong `notebooks/Gender_Fusion_Training.ipynb`.
 
 ---
 
-## 🛠️ Cài đặt (trên Colab)
+##  Quy tr�nh l�m vi?c (Notebook-first)
+1) Tr�n local: d�ng `auto_bot.py` d? crawl YouTube theo t? kh�a, luu v�o `Gender_Raw_Data/` (n�n d?t trong Google Drive for Desktop d? auto-sync).
+2) Upload/Sync `Gender_Raw_Data` l�n Google Drive.
+3) Tr�n Colab: m? `notebooks/Gender_Fusion_Training.ipynb`, mount Drive, tr? t?i thu m?c data, x? l� + train.
+
+---
+
+##  C�i d?t (Colab)
 ```bash
-# Trong Colab cell đầu tiên
 !pip install -r requirements.txt
 ```
-
-**requirements.txt (đã rút gọn):**
+**requirements.txt (t?i gi?n):**
 ```
 numpy<2.0
 mediapipe
@@ -37,31 +42,22 @@ yt-dlp
 
 ---
 
-## 🚀 Quy trình làm việc (Notebook-first)
-1) Mở `notebooks/Gender_Fusion_Training.ipynb` trên Google Colab.  
-2) Chạy cell cài đặt dependencies.  
-3) Thực hiện pipeline trong notebook:
-   - Tải dữ liệu (YouTube/Wikimedia, tùy bạn)  
-   - Tiền xử lý (ảnh + audio)  
-   - Huấn luyện fusion model (vision + audio)  
-   - Đánh giá & lưu checkpoint (tùy chọn: drive/weights)  
-4) Xuất kết quả/metric trực tiếp từ notebook.
+##  Bot crawl d? li?u (ch?y local)
+- File: `auto_bot.py`
+- Ch?nh `SEARCH_KEYWORDS`, `LIMIT_PER_KEYWORD`, `SAVE_DIR`.
+- Ch?y: `python auto_bot.py` (c?n `yt-dlp`, khuy?n ngh? c�i FFmpeg).
+- M?o: �?t `SAVE_DIR` b�n trong thu m?c Google Drive d? t? d?ng b? l�n cloud.
 
 ---
 
-## ❓ FAQ
-- **Tại sao không Docker/API/CI/CD?**  
-  Dự án sinh viên, chạy trên Colab → ưu tiên đơn giản, dễ debug.
-
-- **Tôi nên đặt code ở đâu?**  
-  Gọn trong notebook chính; nếu cần thêm file `.py`, để cùng thư mục với notebook.
-
-- **Lưu model ở đâu?**  
-  Gợi ý: Google Drive hoặc tải xuống trực tiếp từ notebook.
+##  FAQ
+- **T?i sao kh�ng Docker/API/CI/CD?** D? �n sinh vi�n, ch?y tr�n Colab  uu ti�n don gi?n, d? debug.
+- **Luu model ? d�u?** Google Drive ho?c t?i xu?ng tr?c ti?p t? notebook.
+- **N?u c?n th�m module .py?** �?t c�ng thu m?c v?i notebook d? d? import.
 
 ---
 
-## 📌 Ghi chú
-- Repo đã được dọn sạch khỏi các thành phần MLOps cũ (Docker, API, monitoring, collectors...).  
-- Nếu cần bổ sung, hãy thêm trực tiếp vào notebook hoặc một file `.py` duy nhất.  
-- Hãy commit notebook sau khi hoàn thiện thí nghiệm để lưu lại kết quả.
+##  Ghi ch�
+- Repo d� du?c d?n s?ch c�c th�nh ph?n MLOps cu.
+- N?u c?n b? sung, h�y th�m tr?c ti?p v�o notebook ho?c m?t file `.py` duy nh?t.
+- Commit notebook sau khi ho�n thi?n th� nghi?m d? luu k?t qu?.
